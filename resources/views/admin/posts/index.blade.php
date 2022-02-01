@@ -23,7 +23,9 @@
                 <tr>
                     <th>{{ $post->id }}</th>
                     <th>{{ $post->title }}</th>
-                    <th>SHOW</th>
+                    <th>
+                        <a class="btn btn-success" href="{{ route('admin.posts.show', $post->slug) }}">Show</a>
+                    </th>
                     <th>EDIT</th>
                     <th>DELETE</th>
                 </tr>

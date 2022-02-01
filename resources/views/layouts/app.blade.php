@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link @if(Request::route()->getName() == 'admin.posts.index') active @endif" href="{{ route('admin.posts.index') }}">POSTS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(Request::route()->getName() == 'admin.posts.create') active @endif" href="{{ route('admin.posts.create') }}">CREATE</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -53,7 +53,7 @@ class PostController extends Controller
         
         // gen slug univoco
         $slug = Str::slug($data['title'], '-');
-        $count = 1;
+        $count = 2;
         $base_slug = $slug;
 
         while (Post::where('slug', $slug)->first()) {

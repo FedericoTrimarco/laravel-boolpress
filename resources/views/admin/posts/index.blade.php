@@ -21,6 +21,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Category</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
@@ -29,6 +30,9 @@
                 <tr>
                     <th>{{ $post->id }}</th>
                     <th>{{ $post->title }}</th>
+                    <th>
+                        @if ($post->category) {{ $post->category->name }} @else Uncategorized @endif
+                    </th>
                     <th>
                         <a class="btn btn-success" href="{{ route('admin.posts.show', $post->slug) }}">Show</a>
                     </th>

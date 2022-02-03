@@ -37,7 +37,7 @@
             <div class="mb-4">
                 <label for="category_id" class="form-label">Category</label>
                 <select name="form-control" id="category_id" name="category_id">
-                    <option value="">Nessuna Categoria</option>
+                    <option value="">Uncategorized</option>
                     @foreach ($categories as $category)
                         <option
                             value="{{ $category->id }}"

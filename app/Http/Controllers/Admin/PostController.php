@@ -31,6 +31,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        dump($categories);
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -49,7 +50,7 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
-        // dump($data);
+        dump($data);
 
         // creazione nuovo post
         $new_post = new Post();

@@ -36,7 +36,7 @@
             {{-- categories --}}
             <div class="mb-4">
                 <label for="category_id" class="form-label">Category</label>
-                <select name="form-control" id="category_id" name="category_id">
+                <select class="form-control" id="category_id" name="category_id">
                     <option value="">Uncategorized</option>
                     @foreach ($categories as $category)
                         <option

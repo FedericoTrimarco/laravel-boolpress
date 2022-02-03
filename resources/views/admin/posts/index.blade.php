@@ -31,7 +31,11 @@
                     <th>{{ $post->id }}</th>
                     <th>{{ $post->title }}</th>
                     <th>
-                        @if ($post->category) {{ $post->category->name }} @else Uncategorized @endif
+                        @if ($post->category)
+                            <a href="{{ route('admin.category', $post->category->id) }}">{{ $post->category->name }}</a>
+                        @else
+                            Uncategorized
+                        @endif
                     </th>
                     <th>
                         <a class="btn btn-success" href="{{ route('admin.posts.show', $post->slug) }}">Show</a>

@@ -8,10 +8,10 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    public function show(Category $category) {
-
+    public function show($id) {
+        $category = Category::find($id);
         dump($category->posts);
         
         return view('admin.categories.show', compact('category'));
     }
-}
+} 

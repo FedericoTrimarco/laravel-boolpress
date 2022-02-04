@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $tags = Tag::all();
-        dump($tags);
+        // dump($tags);
 
         return view('admin.posts.index', compact('posts', 'tags'));
     }

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Blog Posts</h1>
+    <section class="container">
+        <h1 class="display-4">Blog Posts</h1>
 
         @if ($posts->isEmpty())
             <p>No post found yet. <a href="{{ 'admin.posts.create' }}">Create a new once.</a></p>
@@ -16,7 +16,7 @@
                 eliminato correttamente
             </div>
         @endif
-        <table class="table">
+        <table class="table mb-5">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -60,5 +60,32 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </section>
+    
+    {{-- tags --}}
+    <section class="container">
+        <h2 class="mb-4 display-4">Post by tag</h2>
+        <div class="d-flex justify-content-between ">
+            @foreach ($tags as $tag)
+
+                <div class="card p-4">
+                    <h3>{{ $tag->name }}</h3>
+        
+                    @if ($tag->posts->isEmpty())
+                        <p>No post found.</p>
+                    @else
+                        <ul class="list-unstyled">
+                            @foreach ($tag->posts as $post)
+                                <li>
+                                    <a href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+
+            @endforeach
+
+        </div>
+    </section>
 @endsection

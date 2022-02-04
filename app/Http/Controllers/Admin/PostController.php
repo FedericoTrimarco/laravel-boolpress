@@ -19,9 +19,10 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $tags = Tag::all();
         // dump($posts);
 
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts', 'tags'));
     }
 
     /**
@@ -33,7 +34,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        // dump($categories);
+        // dump($tags);
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
@@ -49,10 +50,12 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
         ]);
 
         $data = $request->all();
         // dump($data);
+        // dd($data); -> dump che stoppa la funzione
 
         // creazione nuovo post
         $new_post = new Post();
@@ -72,6 +75,11 @@ class PostController extends Controller
 
         $new_post->save();
 
+        //SALVA IN PIVOT RELAZIONE TRA NUOVO POST CON TAGS SELZ. DELLA FORM
+        if (array_key_exists('tags', $data)) {
+            $new_post->tags()->attach($data['tags']);   
+        }
+
         return redirect()->route('admin.posts.show', $new_post->slug); 
     }
 
@@ -85,6 +93,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
         // dump($post->category);
+        // dump($post->tags);
 
         if(! $post) {
             abort(404);
@@ -102,12 +111,13 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         if(! $post) {
             abort(404);
         }
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -123,6 +133,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
         ]);
 
         $data = $request->all();
@@ -147,6 +158,12 @@ class PostController extends Controller
         }
 
         $post->update($data);
+
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
         return redirect()->route('admin.posts.show', $post->slug);
     }
 

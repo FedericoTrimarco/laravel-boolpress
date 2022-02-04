@@ -35,19 +35,25 @@
 
             {{-- categories --}}
             <div class="mb-4">
-                <label for="category_id" class="form-label">Category</label>
-                <select class="form-control" id="category_id" name="category_id">
-                    <option value="">Uncategorized</option>
-                    @foreach ($categories as $category)
-                        <option
-                            value="{{ $category->id }}"
-                            @if ($category->id == old('category_id', $post->category_id)) selected @endif
+                <h4>Tags</h4>
+                @foreach ($tags as $tag)
+                    <span class="mr-3">
+                        <input
+                            type="checkbox"
+                            name="tags[]"
+                            id="tag{{ $loop->iteration }}"
+                            value="{{ $tag->id }}"
+                            @if ($errors->any() && in_array($tag->id, old('tags'))) 
+                                checked
+                            @elseif (!$errors->any() && $post->tags->contains($tag->id))
+                                checked
+                            @endif
                         >
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('category_id')
+                        
+                        <label for="tag{{ $loop->iteration }}">{{ $tag->name }}</label>
+                    </span>
+                @endforeach
+                @error('tags')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>

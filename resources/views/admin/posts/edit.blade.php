@@ -34,6 +34,26 @@
             </div>
 
             {{-- categories --}}
+
+            <div class="mb-4">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-control" id="category_id" name="category_id">
+                    <option value="">Uncategorized</option>
+                    @foreach ($categories as $category)
+                        <option
+                            value="{{ $category->id }}"
+                            @if ($category->id == old('category_id', $post->category_id))) selected @endif
+                        >
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+                
+            {{-- tags --}}
             <div class="mb-4">
                 <h4>Tags</h4>
                 @foreach ($tags as $tag)

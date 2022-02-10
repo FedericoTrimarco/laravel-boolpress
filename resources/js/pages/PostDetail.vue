@@ -4,17 +4,23 @@
         <h1>{{ post.title }}</h1>
         <span>Category: {{ post.category.name }}</span>
         <p>{{ post.content }}</p>
-        <span v-for="tag in post.tags" :key="`tag-${tag.id}`" class="badge bg-primary me-2">{{ tag.name }}</span>
+        <Tags :list="post.tags"/>
     </div>
-    <span v-else>lello</span>
+     <div class="spinner-border" role="status" v-else>
+        <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Tags from '../components/Tags.vue';
 
 export default {
     name: 'PostDetail',
+    components: {
+        Tags,
+    },
     data() {
         return {
             post: null,

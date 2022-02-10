@@ -17,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Api')->group(function() {
     //Post Archive
     Route::get('/posts', 'PostController@index');
+    
+    //single post detail
+    Route::get('/posts/{slug}', 'PostController@show');
 });

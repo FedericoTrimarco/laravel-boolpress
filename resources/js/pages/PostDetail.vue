@@ -1,15 +1,15 @@
 <template>
-  <div class="container mt-5">
-      <div v-if="post != null">
-        <h1>{{ post.title }}</h1>
-        <span>Category: {{ post.category.name }}</span>
-        <p>{{ post.content }}</p>
-        <Tags :list="post.tags"/>
+    <div class="container mt-5">
+        <div v-if="post != null">
+            <h1>{{ post.title }}</h1>
+            <span>Category: {{ post.category.name }}</span>
+            <p>{{ post.content }}</p>
+            <Tags :list="post.tags"/>
+        </div>
+        <div class="spinner-border" role="status" v-else>
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
-     <div class="spinner-border" role="status" v-else>
-        <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
 </template>
 
 <script>

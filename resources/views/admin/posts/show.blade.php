@@ -14,16 +14,18 @@
         </div>
 
         <div class="row">
-            <div class="col-6">
+            <div class="{{ $post->cover ? 'col-6' : 'col-12' }}">
                 {!! $post->content !!}
             </div>
-            <div class="col-6">
-                img here...
-            </div>
+            @if ($post->cover)
+                <div class="col-6">
+                    <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}" class="img-fluid">
+                </div>
+            @endif
         </div>
 
         @if (!$post->tags->isEmpty())
-            <h4>Tags</h4>
+            <h4 class="mt-3">Tags</h4>
 
             @foreach ($post->tags as $tag)
                 <span class="badge badge-primary">{{ $tag->name }}</span>

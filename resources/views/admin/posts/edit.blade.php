@@ -82,12 +82,13 @@
             <div class="mb-4">
                 <label for="cover" class="form-label">Post Image</label>
                 <input type="file" class="form-control-file" name="cover" id="cover">
+
                 @error('cover')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success">Create</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </form>
     </div>
 @endsection

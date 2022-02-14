@@ -4,7 +4,12 @@
             <h1>{{ post.title }}</h1>
             <span>Category: {{ post.category.name }}</span>
             <p>{{ post.content }}</p>
+
             <Tags :list="post.tags"/>
+
+            <figure v-if="post.cover">
+                <img :src="post.cover" :alt="post.title">
+            </figure>
         </div>
         <div class="spinner-border" role="status" v-else>
             <span class="visually-hidden">Loading...</span>

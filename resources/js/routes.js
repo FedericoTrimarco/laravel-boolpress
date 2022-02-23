@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import About from './pages/About';
 import PostDetail from './pages/PostDetail';
+import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 // attvazione router in vue
@@ -34,6 +35,11 @@ const router = new VueRouter({
             path: '/blog/:slug',
             name: 'postDetail',
             component: PostDetail,
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: Contact,
         },
         {
             path: '*',

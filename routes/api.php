@@ -1,5 +1,6 @@
 <?php
 
+use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,8 @@ Route::namespace('Api')->group(function() {
     
     //single post detail
     Route::get('/posts/{slug}', 'PostController@show');
+
+    // Contact
+    Route::get('/contacts', 'ContactController@index');
+    Route::post('/contacts', 'ContactController@store');
 });
